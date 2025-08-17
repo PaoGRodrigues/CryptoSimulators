@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simuladores de Criptografía - TestCursor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .simulators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .simulator-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .simulator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .simulator-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .simulator-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .simulator-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .simulator-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .simulator-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .coming-soon {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            opacity: 0.7;
+        }
+        
+        .coming-soon .simulator-btn {
+            background: rgba(255, 255, 255, 0.2);
+            cursor: not-allowed;
+        }
+        
+        .coming-soon .simulator-btn:hover {
+            transform: none;
+        }
+        
+        .info-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .info-section h2 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .info-section p {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .simulators-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .simulator-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Simuladores de Criptografía</h1>
+            <p class="subtitle">Herramientas interactivas para el aprendizaje de algoritmos criptográficos en ingeniería</p>
+        </header>
+        
+        <div class="simulators-grid">
+            <!-- Simulador DES -->
+            <div class="simulator-card">
+                <span class="simulator-icon">🔐</span>
+                <h3 class="simulator-title">DES - Efecto Avalancha</h3>
+                <p class="simulator-description">
+                    Simulador interactivo del algoritmo DES (Data Encryption Standard) que demuestra 
+                    visualmente el efecto avalancha. Perfecto para estudiantes de cuarto año de ingeniería.
+                </p>
+                <a href="Simuladores/DES_Simulator/index.html" class="simulator-btn">🚀 Abrir Simulador</a>
+            </div>
+            
+            <!-- Simulador AES (Próximamente) -->
+            <div class="simulator-card coming-soon">
+                <span class="simulator-icon">🔒</span>
+                <h3 class="simulator-title">AES - Advanced Encryption Standard</h3>
+                <p class="simulator-description">
+                    Simulador del algoritmo AES que reemplazó al DES. Incluirá visualización de 
+                    las transformaciones de bytes y análisis de seguridad.
+                </p>
+                <span class="simulator-btn">⏳ Próximamente</span>
+            </div>
+            
+            <!-- Simulador RSA (Próximamente) -->
+            <div class="simulator-card coming-soon">
+                <span class="simulator-icon">🔑</span>
+                <h3 class="simulator-title">RSA - Criptografía de Clave Pública</h3>
+                <p class="simulator-description">
+                    Simulador del algoritmo RSA para criptografía asimétrica. Demostrará el 
+                    funcionamiento de claves públicas y privadas.
+                </p>
+                <span class="simulator-btn">⏳ Próximamente</span>
+            </div>
+            
+            <!-- Simulador Hash (Próximamente) -->
+            <div class="simulator-card coming-soon">
+                <span class="simulator-icon">📝</span>
+                <h3 class="simulator-title">Funciones Hash - MD5, SHA</h3>
+                <p class="simulator-description">
+                    Simulador de funciones hash criptográficas. Mostrará la resistencia a 
+                    colisiones y la avalancha de cambios.
+                </p>
+                <span class="simulator-btn">⏳ Próximamente</span>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h2>🎓 Para Uso Educativo</h2>
+            <p>
+                Esta colección de simuladores está diseñada específicamente para la enseñanza de criptografía 
+                en ingeniería. Cada simulador incluye explicaciones detalladas, visualizaciones interactivas 
+                y análisis estadísticos para facilitar la comprensión de conceptos complejos.
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>Desarrollado para la enseñanza de criptografía en ingeniería | TestCursor 2024</p>
+        </div>
+    </div>
+</body>
+</html> 

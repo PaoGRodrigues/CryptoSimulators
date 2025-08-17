@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Efecto Avalancha - DES</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Simulador del Efecto Avalancha - DES</h1>
+            <p class="subtitle">Demostración visual de cómo un cambio de 1 bit se propaga en el algoritmo DES</p>
+        </header>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label for="plaintext">Texto Plano (8 caracteres):</label>
+                <input type="text" id="plaintext" value="HOLA1234" maxlength="8" placeholder="Ingresa 8 caracteres">
+                <button id="randomize">🎲 Aleatorio</button>
+            </div>
+            
+            <div class="key-section">
+                <label for="key">Clave DES (64 bits):</label>
+                <div class="key-display">
+                    <span id="key-binary">0000000000000000000000000000000000000000000000000000000000000000</span>
+                    <button id="flip-bit">🔄 Cambiar 1 bit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <div class="encryption-box">
+                <h3>Texto Plano Original</h3>
+                <div class="text-display" id="original-text"></div>
+                <div class="binary-display" id="original-binary"></div>
+                <div class="result" id="original-cipher"></div>
+            </div>
+            
+            <div class="encryption-box">
+                <h3>Texto Plano Modificado (1 bit cambiado)</h3>
+                <div class="text-display" id="modified-text"></div>
+                <div class="binary-display" id="modified-binary"></div>
+                <div class="result" id="modified-cipher"></div>
+            </div>
+        </div>
+        
+        <div class="permutations-section">
+            <h3>🔄 Permutaciones del Algoritmo DES</h3>
+            <div class="permutations-container">
+                <div class="permutation-box">
+                    <h4>📥 Permutación Inicial (IP)</h4>
+                    <div class="permutation-info">
+                        <div class="input-output">
+                            <div class="input-group">
+                                <label>Entrada (Texto Plano):</label>
+                                <div class="binary-display" id="ip-input-original"></div>
+                            </div>
+                            <div class="arrow">↓</div>
+                            <div class="output-group">
+                                <label>Salida (Después de IP):</label>
+                                <div class="binary-display" id="ip-output-original"></div>
+                            </div>
+                        </div>
+                        <div class="input-output">
+                            <div class="input-group">
+                                <label>Entrada (Texto Modificado):</label>
+                                <div class="binary-display" id="ip-input-modified"></div>
+                            </div>
+                            <div class="arrow">↓</div>
+                            <div class="output-group">
+                                <label>Salida (Después de IP):</label>
+                                <div class="binary-display" id="ip-output-modified"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="permutation-box">
+                    <h4>📤 Permutación Final (IP⁻¹)</h4>
+                    <div class="permutation-info">
+                        <div class="input-output">
+                            <div class="input-group">
+                                <label>Entrada (Después de 16 Rondas):</label>
+                                <div class="binary-display" id="ip-inv-input-original"></div>
+                            </div>
+                            <div class="arrow">↓</div>
+                            <div class="output-group">
+                                <label>Salida (Texto Cifrado):</label>
+                                <div class="binary-display" id="ip-inv-output-original"></div>
+                            </div>
+                        </div>
+                        <div class="input-output">
+                            <div class="input-group">
+                                <label>Entrada (Después de 16 Rondas):</label>
+                                <div class="binary-display" id="ip-inv-input-modified"></div>
+                            </div>
+                            <div class="arrow">↓</div>
+                            <div class="output-group">
+                                <label>Salida (Texto Cifrado):</label>
+                                <div class="binary-display" id="ip-inv-output-modified"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="avalanche-section">
+            <h3>📊 Análisis del Efecto Avalancha</h3>
+            <div class="info-box">
+                <p><strong>💡 Explicación:</strong> El texto plano se convierte a binario (64 bits), luego se aplica la permutación inicial (IP), 
+                se procesa a través de 16 rondas DES, y finalmente se aplica la permutación final (IP⁻¹). El efecto avalancha se observa en cómo 
+                un cambio de 1 bit en el texto plano se propaga a través de todo el proceso.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Bits diferentes:</span>
+                    <span class="stat-value" id="bit-difference">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Porcentaje de cambio:</span>
+                    <span class="stat-value" id="change-percentage">0%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Factor avalancha:</span>
+                    <span class="stat-value" id="avalanche-factor">0.0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="rounds-section">
+            <h3>🔄 Propagación por Rondas</h3>
+            <div class="rounds-container" id="rounds-container">
+                <!-- Las rondas se generarán dinámicamente -->
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="encrypt">🔒 Cifrar</button>
+            <button id="reset">🔄 Reiniciar</button>
+            <button id="demo">🎬 Demo Automático</button>
+        </div>
+
+        <div class="info-panel">
+            <h4>💡 ¿Qué es el Efecto Avalancha?</h4>
+            <p>El efecto avalancha es una propiedad fundamental de los algoritmos de cifrado modernos. Significa que cambiar un solo bit en el texto plano o en la clave debe resultar en un cambio significativo en el texto cifrado. En DES, esto se logra a través de:</p>
+            <ul>
+                <li><strong>Función de expansión:</strong> Expande 32 bits a 48 bits</li>
+                <li><strong>Cajas S:</strong> Transforman 6 bits en 4 bits</li>
+                <li><strong>Permutaciones:</strong> Reorganizan los bits</li>
+                <li><strong>XOR con subclaves:</strong> Mezclan bits de la clave</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="des.js"></script>
+    <script src="simulator.js"></script>
+</body>
+</html> 

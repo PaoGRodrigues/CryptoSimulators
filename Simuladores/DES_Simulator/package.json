@@ -1,0 +1,44 @@
+{
+  "name": "des-avalanche-simulator",
+  "version": "1.0.0",
+  "description": "Simulador interactivo del efecto avalancha en el algoritmo DES para uso educativo",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "start-node": "npx http-server -p 8000",
+    "dev": "python3 -m http.server 8000 --bind 127.0.0.1",
+    "build": "echo 'No build step required - static files only'",
+    "test": "echo 'Open index.html in browser to test'"
+  },
+  "keywords": [
+    "des",
+    "cryptography",
+    "avalanche-effect",
+    "education",
+    "simulator",
+    "encryption",
+    "crypto",
+    "teaching"
+  ],
+  "author": "Simulador DES - Efecto Avalancha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/des-avalanche-simulator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/des-avalanche-simulator/issues"
+  },
+  "homepage": "https://github.com/yourusername/des-avalanche-simulator#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+} 
